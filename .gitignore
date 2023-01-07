@@ -161,3 +161,7 @@ cython_debug/
 
 
 penguin_ai/intents.json
+
+dataset/
+
+penguin_ai/instagram_chat.csv
