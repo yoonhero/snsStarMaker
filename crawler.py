@@ -114,7 +114,7 @@ class PostCommentWriterCrawler(Browser):
         like_btn = like_btn_container.find_element(
             By.CSS_SELECTOR, "button._abl-")
         like_btn.click()
-        
+
         time.sleep(0.5)
 
     def write_comment(self, comment):
@@ -142,14 +142,20 @@ class PostCommentWriterCrawler(Browser):
 
         time.sleep(PAGE_LOADING_TIME)
 
-        follow_btn = self.driver.find_element(
-            By.XPATH, "/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/header/section/div[1]/div[1]/div/div[1]/button")
+        try:
+            follow_btn = self.driver.find_element(
+                By.XPATH, "/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/header/section/div[1]/div[1]/div/div[1]/button")
+        except:
+            return
 
         # If I already followed this person  we don't need to click again
         try:
             t = self.driver.find_element(
                 By.XPATH, "/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/header/section/div[1]/div[1]/div/div[1]/button/div/div[1]").text
             print(t)
+
+            if t == "팔로우":
+                follow_btn.click()
         except:
             t = self.driver.find_element(
                 By.XPATH, "/html/body/div[2]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[2]/section/main/div/header/section/div[1]/div[1]/div/div[1]/button/div/div").text
@@ -157,6 +163,8 @@ class PostCommentWriterCrawler(Browser):
 
             if t == "팔로우":
                 follow_btn.click()
+
+        time.sleep(3)
 
 
 if __name__ == "__main__":
