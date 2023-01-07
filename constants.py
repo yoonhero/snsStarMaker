@@ -9,3 +9,6 @@ INSTAGRAM_PASSWORD = os.getenv("INSTAGRAM_PASSWORD")
 
 INSTAGRAM_HOME = "https://www.instagram.com"
 INSTAGRAM_TAG = "https://www.instagram.com/explore/tags"
+
+
+PAGE_LOADING_TIME = 4
